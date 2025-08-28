@@ -1,0 +1,66 @@
+(
+    graph: (
+        nodes: {
+            3: (
+                template: PyNode((
+                    name: "multiply",
+                    py_path: "test_dependency.foray.multiply",
+                    config: Ok((
+                        inputs: Ok({
+                            "a": Float,
+                            "b": Float,
+                        }),
+                        outputs: Ok({
+                            "out": Float,
+                        }),
+                        parameters: Ok({}),
+                    )),
+                )),
+                parameters_values: {},
+            ),
+            4: (
+                template: PyNode((
+                    name: "const",
+                    py_path: "test_dependency.foray.const",
+                    config: Ok((
+                        inputs: Ok({}),
+                        outputs: Ok({
+                            "out": Float,
+                        }),
+                        parameters: Ok({}),
+                    )),
+                )),
+                parameters_values: {},
+            ),
+        },
+        edges: [((
+            node: 4,
+            name: "out",
+            io: Out,
+        ), (
+            node: 3,
+            name: "a",
+            io: In,
+        ))],
+        next_id: 5,
+    ),
+    shapes: (
+        camera: (
+            position: (
+                x: 5.9800415,
+                y: -57.041412,
+            ),
+            zoom: 1.0,
+        ),
+        shape_positions: {
+            4: (
+                x: 114.73004,
+                y: 125.2617,
+            ),
+            3: (
+                x: 143.27066,
+                y: 282.36172,
+            ),
+        },
+    ),
+)

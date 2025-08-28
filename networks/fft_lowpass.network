@@ -1,0 +1,158 @@
+(
+    graph: (
+        nodes: {
+            9: (
+                template: PyNode((
+                    name: "shepp_logan",
+                    py_path: "foray_example.foray.shepp_logan",
+                    config: Ok((
+                        inputs: Ok({}),
+                        outputs: Ok({
+                            "out": Array(Complex, [None, None]),
+                        }),
+                        parameters: Ok({
+                            "image_size": NumberField(256.0),
+                        }),
+                    )),
+                )),
+                parameters_values: {
+                    "image_size": Float(256.0),
+                },
+            ),
+            10: (
+                template: PyNode((
+                    name: "fft",
+                    py_path: "foray_example.foray.fft",
+                    config: Ok((
+                        inputs: Ok({
+                            "a": Array(Complex, [None, None]),
+                        }),
+                        outputs: Ok({
+                            "out": Array(Complex, [None, None]),
+                        }),
+                        parameters: Ok({}),
+                    )),
+                )),
+                parameters_values: {},
+            ),
+            11: (
+                template: PyNode((
+                    name: "multiply",
+                    py_path: "foray_example.foray.multiply",
+                    config: Ok((
+                        inputs: Ok({
+                            "a": Array(Float, [None, None]),
+                            "b": Array(Float, [None, None]),
+                        }),
+                        outputs: Ok({
+                            "out": Array(Float, [None, None]),
+                        }),
+                        parameters: Ok({}),
+                    )),
+                )),
+                parameters_values: {},
+            ),
+            12: (
+                template: PyNode((
+                    name: "circle_mask",
+                    py_path: "foray_example.foray.circle_mask",
+                    config: Ok((
+                        inputs: Ok({}),
+                        outputs: Ok({
+                            "out": Array(Float, [None, None]),
+                        }),
+                        parameters: Ok({
+                            "image_size": NumberField(256.0),
+                            "radius": Slider(0.0, 256.0, 1.0),
+                        }),
+                    )),
+                )),
+                parameters_values: {
+                    "image_size": Float(256.0),
+                    "radius": Float(20.64),
+                },
+            ),
+            13: (
+                template: PyNode((
+                    name: "ifft",
+                    py_path: "foray_example.foray.ifft",
+                    config: Ok((
+                        inputs: Ok({
+                            "a": Array(Complex, [None, None]),
+                        }),
+                        outputs: Ok({
+                            "out": Array(Complex, [None, None]),
+                        }),
+                        parameters: Ok({}),
+                    )),
+                )),
+                parameters_values: {},
+            ),
+        },
+        edges: [((
+            node: 9,
+            name: "out",
+            io: Out,
+        ), (
+            node: 10,
+            name: "a",
+            io: In,
+        )), ((
+            node: 12,
+            name: "out",
+            io: Out,
+        ), (
+            node: 11,
+            name: "b",
+            io: In,
+        )), ((
+            node: 10,
+            name: "out",
+            io: Out,
+        ), (
+            node: 11,
+            name: "a",
+            io: In,
+        )), ((
+            node: 11,
+            name: "out",
+            io: Out,
+        ), (
+            node: 13,
+            name: "a",
+            io: In,
+        ))],
+        next_id: 14,
+    ),
+    shapes: (
+        camera: (
+            position: (
+                x: 41.7742,
+                y: 23.680023,
+            ),
+            zoom: 1.0,
+        ),
+        shape_positions: {
+            12: (
+                x: 381.09613,
+                y: 221.8457,
+            ),
+            13: (
+                x: 259.6054,
+                y: 484.6675,
+            ),
+            9: (
+                x: 135.34924,
+                y: 119.99879,
+            ),
+            10: (
+                x: 139.68048,
+                y: 220.57065,
+            ),
+            11: (
+                x: 237.06482,
+                y: 357.41132,
+            ),
+        },
+    ),
+)

@@ -6,6 +6,9 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["foray", "numpy>=2.3.2"]
 
+[project.entry-points."foray"]
+nodes_module = "foray_example.foray"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
