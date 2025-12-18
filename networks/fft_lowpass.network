@@ -18,6 +18,7 @@
                 parameters_values: {
                     "image_size": Float(256.0),
                 },
+                visualization: None,
             ),
             10: (
                 template: PyNode((
@@ -34,6 +35,7 @@
                     )),
                 )),
                 parameters_values: {},
+                visualization: None,
             ),
             11: (
                 template: PyNode((
@@ -41,16 +43,17 @@
                     py_path: "foray_example.foray.multiply",
                     config: Ok((
                         inputs: Ok({
-                            "a": Array(Float, [None, None]),
-                            "b": Array(Float, [None, None]),
+                            "a": Array(Complex, [None, None]),
+                            "b": Array(Complex, [None, None]),
                         }),
                         outputs: Ok({
-                            "out": Array(Float, [None, None]),
+                            "out": Array(Complex, [None, None]),
                         }),
                         parameters: Ok({}),
                     )),
                 )),
                 parameters_values: {},
+                visualization: None,
             ),
             12: (
                 template: PyNode((
@@ -69,8 +72,9 @@
                 )),
                 parameters_values: {
                     "image_size": Float(256.0),
-                    "radius": Float(20.64),
+                    "radius": Float(14.8),
                 },
+                visualization: None,
             ),
             13: (
                 template: PyNode((
@@ -87,6 +91,49 @@
                     )),
                 )),
                 parameters_values: {},
+                visualization: None,
+            ),
+            15: (
+                template: RustNode(Display),
+                parameters_values: {},
+                visualization: Some(NDimVis((
+                    parameters: (
+                        ndim_mapping: [(Y, 256), (X, 256)],
+                        value_mapping: (
+                            floor: 0.0,
+                            ceil: 1.0,
+                            color_map: Real(Color),
+                        ),
+                    ),
+                ))),
+            ),
+            16: (
+                template: RustNode(Display),
+                parameters_values: {},
+                visualization: Some(NDimVis((
+                    parameters: (
+                        ndim_mapping: [(Y, 256), (X, 256)],
+                        value_mapping: (
+                            floor: 0.000002416663,
+                            ceil: 0.85113746,
+                            color_map: Complex(Mag(Color)),
+                        ),
+                    ),
+                ))),
+            ),
+            17: (
+                template: RustNode(Display),
+                parameters_values: {},
+                visualization: Some(NDimVis((
+                    parameters: (
+                        ndim_mapping: [(Y, 256), (X, 256)],
+                        value_mapping: (
+                            floor: 0.0,
+                            ceil: 1.0,
+                            color_map: Complex(Mag(Color)),
+                        ),
+                    ),
+                ))),
             ),
         },
         edges: [((
@@ -98,6 +145,14 @@
             name: "a",
             io: In,
         )), ((
+            node: 10,
+            name: "out",
+            io: Out,
+        ), (
+            node: 11,
+            name: "a",
+            io: In,
+        )), ((
             node: 12,
             name: "out",
             io: Out,
@@ -106,12 +161,12 @@
             name: "b",
             io: In,
         )), ((
-            node: 10,
+            node: 12,
             name: "out",
             io: Out,
         ), (
-            node: 11,
-            name: "a",
+            node: 15,
+            name: "in",
             io: In,
         )), ((
             node: 11,
@@ -121,37 +176,65 @@
             node: 13,
             name: "a",
             io: In,
+        )), ((
+            node: 13,
+            name: "out",
+            io: Out,
+        ), (
+            node: 16,
+            name: "in",
+            io: In,
+        )), ((
+            node: 9,
+            name: "out",
+            io: Out,
+        ), (
+            node: 17,
+            name: "in",
+            io: In,
         ))],
-        next_id: 14,
+        next_id: 18,
     ),
     shapes: (
         camera: (
             position: (
-                x: 41.7742,
-                y: 23.680023,
+                x: 202.3367,
+                y: 396.16052,
             ),
             zoom: 1.0,
         ),
         shape_positions: {
-            12: (
-                x: 381.09613,
-                y: 221.8457,
+            17: (
+                x: -23.800018,
+                y: 326.16833,
+            ),
+            15: (
+                x: 428.1414,
+                y: 358.22302,
+            ),
+            16: (
+                x: 205.47733,
+                y: 556.9457,
             ),
             13: (
-                x: 259.6054,
-                y: 484.6675,
-            ),
-            9: (
-                x: 135.34924,
-                y: 119.99879,
+                x: 262.68353,
+                y: 459.0933,
             ),
             10: (
-                x: 139.68048,
-                y: 220.57065,
+                x: 139.80939,
+                y: 220.43784,
+            ),
+            12: (
+                x: 381.22504,
+                y: 221.83398,
             ),
             11: (
-                x: 237.06482,
-                y: 357.41132,
+                x: 237.19373,
+                y: 357.54022,
+            ),
+            9: (
+                x: 135.47815,
+                y: 119.99879,
             ),
         },
     ),

@@ -1,0 +1,148 @@
+(
+    graph: (
+        nodes: {
+            0: (
+                template: PyNode((
+                    name: "write_npy",
+                    py_path: "foray_example.foray.write_npy",
+                    config: Ok((
+                        inputs: Ok({
+                            "array": Array(Complex, [None, None]),
+                        }),
+                        outputs: Ok({}),
+                        parameters: Ok({
+                            "file_path": FilePicker(""),
+                        }),
+                    )),
+                )),
+                parameters_values: {
+                    "file_path": String("/Users/jechristens3/projects/foray_example/data/my_file.npy"),
+                },
+                visualization: None,
+            ),
+            1: (
+                template: PyNode((
+                    name: "shepp_logan",
+                    py_path: "foray_example.foray.shepp_logan",
+                    config: Ok((
+                        inputs: Ok({}),
+                        outputs: Ok({
+                            "out": Array(Complex, [None, None]),
+                        }),
+                        parameters: Ok({
+                            "image_size": NumberField(256.0),
+                        }),
+                    )),
+                )),
+                parameters_values: {
+                    "image_size": Float(256.0),
+                },
+                visualization: None,
+            ),
+            2: (
+                template: RustNode(Display),
+                parameters_values: {},
+                visualization: Some(NDimVis((
+                    parameters: (
+                        ndim_mapping: [(Y, 256), (X, 256)],
+                        value_mapping: (
+                            floor: 0.0,
+                            ceil: 1.0,
+                            color_map: Complex(Mag(Color)),
+                        ),
+                    ),
+                ))),
+            ),
+            3: (
+                template: PyNode((
+                    name: "read_npy",
+                    py_path: "foray_example.foray.read_npy",
+                    config: Ok((
+                        inputs: Ok({}),
+                        outputs: Ok({
+                            "array": Array(Complex, [None, None]),
+                        }),
+                        parameters: Ok({
+                            "file_path": FilePicker(""),
+                        }),
+                    )),
+                )),
+                parameters_values: {
+                    "file_path": String("/Users/jechristens3/projects/foray_example/data/my_file.npy"),
+                },
+                visualization: None,
+            ),
+            4: (
+                template: RustNode(Display),
+                parameters_values: {},
+                visualization: Some(NDimVis((
+                    parameters: (
+                        ndim_mapping: [(Y, 256), (X, 256)],
+                        value_mapping: (
+                            floor: 0.0,
+                            ceil: 1.0,
+                            color_map: Complex(Mag(Color)),
+                        ),
+                    ),
+                ))),
+            ),
+        },
+        edges: [((
+            node: 1,
+            name: "out",
+            io: Out,
+        ), (
+            node: 2,
+            name: "in",
+            io: In,
+        )), ((
+            node: 1,
+            name: "out",
+            io: Out,
+        ), (
+            node: 0,
+            name: "array",
+            io: In,
+        )), ((
+            node: 3,
+            name: "array",
+            io: Out,
+        ), (
+            node: 4,
+            name: "in",
+            io: In,
+        ))],
+        next_id: 5,
+    ),
+    shapes: (
+        camera: (
+            position: (
+                x: -29.265625,
+                y: 68.46875,
+            ),
+            zoom: 1.0,
+        ),
+        shape_positions: {
+            2: (
+                x: 188.0039,
+                y: -80.11328,
+            ),
+            3: (
+                x: -207.85938,
+                y: 142.46094,
+            ),
+            0: (
+                x: -228.98047,
+                y: 9.597656,
+            ),
+            1: (
+                x: -108.58984,
+                y: -214.78125,
+            ),
+            4: (
+                x: 27.867188,
+                y: 284.66406,
+            ),
+        },
+    ),
+)

@@ -3,8 +3,11 @@ name = "foray-example"
 version = "0.1.0"
 description = "A simple example of a Foray python environment"
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = ["foray", "numpy>=2.3.2"]
+requires-python = ">=3.14"
+dependencies = [
+    "foray",
+    "numpy>=2.3.2",
+]
 
 [project.entry-points."foray"]
 nodes_module = "foray_example.foray"

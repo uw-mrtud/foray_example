@@ -7,13 +7,13 @@ def config():
         ForayConfig()
         .inputs(
             {
-                "a": Port.array(Port.float, [None, None]),
-                "b": Port.array(Port.float, [None, None]),
+                "a": Port.array(Port.complex, [None, None]),
+                "b": Port.array(Port.complex, [None, None]),
             }
         )
         .outputs(
             {
-                "out": Port.array(Port.float, [None, None]),
+                "out": Port.array(Port.complex, [None, None]),
             }
         )
     )
